@@ -1,7 +1,14 @@
 package com.auronic;
 
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+
 import java.awt.Color;
 import java.awt.Dimension;
+
 import java.util.HashMap;
 
 import javax.swing.JPanel;
@@ -23,6 +30,58 @@ public class Board extends JPanel {
 	}
 	
 	private static void createSpaces() {
+		BufferedImage image = new BufferedImage(100, 30, BufferedImage.TYPE_INT_RGB);
+		Graphics g = image.getGraphics();
+		g.setFont(new Font("SansSerif", Font.BOLD, 24));
+	 
+		Graphics2D graphics = (Graphics2D) g;
+		graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+					RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+		graphics.drawString("GGWP", 10, 20);
+	 
+		//save this image
+		//ImageIO.write(image, "png", new File("/users/mkyong/ascii-art.png"));
+	 
+		for (int y = 0; y < 30; y++) {
+			StringBuilder sb = new StringBuilder();
+			for (int x = 0; x < 100; x++) {
+	 
+				sb.append(image.getRGB(x, y) == -16777216 ? " " : "$");
+	 
+			}
+	 
+			if (sb.toString().trim().isEmpty()) {
+				continue;
+			}
+	 
+			System.out.println(sb);
+		}
+		System.out.println("\n\n\n\n\n");
+		g = image.getGraphics();
+		g.setFont(new Font("SansSerif", Font.BOLD, 24));
+	 
+		graphics = (Graphics2D) g;
+		graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+					RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+	
+		//save this image
+		//ImageIO.write(image, "png", new File("/users/mkyong/ascii-art.png"));
+	 
+		for (int y = 0; y < 30; y++) {
+			StringBuilder sb = new StringBuilder();
+			for (int x = 0; x < 100; x++) {
+	 
+				sb.append(image.getRGB(x, y) == -16777216 ? " " : "$");
+	 
+			}
+	 
+			if (sb.toString().trim().isEmpty()) {
+				continue;
+			}
+	 
+			System.out.println(sb);
+		
+	 
 		int i,j,k,l;
 		for (i=0;i<3;i++) {
 			for (j=0;j<3;j++) {
@@ -33,6 +92,10 @@ public class Board extends JPanel {
 				}
 			}
 		}
+		}
+		
+			
+		
 	}
 	
 	public void layoutSpaces() {

@@ -1,5 +1,10 @@
 package com.auronic;
 
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.util.Scanner;
 
 public class GameClass {
@@ -52,6 +57,8 @@ public class GameClass {
 	}*/
 	
 	public static void BoardBuilder(int board[][]) {
+		
+	  
 		//build the board for the game as a 3x3 array with 0s in every array index
 		int i,j;
 		for (i=0;i<3;i++) {
@@ -68,13 +75,13 @@ public class GameClass {
 			for (j=0;j<3;j++) {
 				switch (board [i][j]) {
 				case 0:
-					System.out.print("*");
-					break;
-				case 1:
 					System.out.print("X");
 					break;
-				case 2:
+				case 1:
 					System.out.print("O");
+					break;
+				case 2:
+					System.out.print("*");
 					break;
 				default:
 					break;

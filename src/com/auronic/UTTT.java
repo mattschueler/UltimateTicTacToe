@@ -119,13 +119,13 @@ public class UTTT {
 					for (l=0;l<3;l++) {
 						switch (board [i][j][k][l]) {
 							case 0:
-								print("*");
+								print("O");
 								break;
 							case 1:
-								print("X");
+								print("*");
 								break;
 							case 2:
-								print("O");
+								print("X");
 								break;
 							default:
 								break;
@@ -192,6 +192,7 @@ public class UTTT {
 
 	public static int CheckForWinSmall(int board [][][][], int[] lastMove) {
 		int winner=0;
+		
 		
 		if (board[lastMove[0]][lastMove[1]][0][0]==board[lastMove[0]][lastMove[1]][0][1] && board[lastMove[0]][lastMove[1]][0][0]==board[lastMove[0]][lastMove[1]][0][2] && board[lastMove[0]][lastMove[1]][0][0]!=0) {
 			winner=board[lastMove[0]][lastMove[1]][0][0];

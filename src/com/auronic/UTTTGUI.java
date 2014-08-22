@@ -14,6 +14,7 @@ public class UTTTGUI {
 	
 	public UTTTGUI() {
 		
+		
 	}
 	
 	public static void createAndShowGUI() {

@@ -1,6 +1,7 @@
 package com.auronic;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -27,15 +28,17 @@ public class TTTSpace extends JButton {
 					Board.player = "X";
 					break;
 				}
+				((Board)((TTTSpace)(ae.getSource())).getParent()).lockInactive(k, l);
 			}
 		});
-		this.setText(String.format("" + i + j + k + l));
+		this.setFont(new Font("Arial", Font.PLAIN, 28));
+		this.setText(value);
 		xy = new Coords(i,j,k,l);
 	}
 	
 	@Override
 	public Dimension getPreferredSize() {
-		return new Dimension(75,75);
+		return new Dimension(60,60);
 	}
 	
 	public String getPlayer() {

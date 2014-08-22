@@ -10,17 +10,17 @@ public class Board extends JPanel {
 	public static String player;
 	public static HashMap<String, TTTSpace> spaces;
 	public SpringLayout boardLayout;
-	
+		
 	public Board() {
 		player = "X";
 		spaces = new HashMap<String, TTTSpace>(81,1);
 		createSpaces();
 		boardLayout = new SpringLayout();
 		this.setLayout(boardLayout);
-		layoutSpaces();
+		lockInactive(1,1);
 	}
 	
-	private void createSpaces() {
+	private static void createSpaces() {
 		int i,j,k,l;
 		for (i=0;i<3;i++) {
 			for (j=0;j<3;j++) {
@@ -43,7 +43,7 @@ public class Board extends JPanel {
 							boardLayout.putConstraint(SpringLayout.WEST, spaces.get(String.format("" + i + j + k + l)), 10, SpringLayout.WEST, this);
 						} else {
 							if (k == 0) {
-								boardLayout.putConstraint(SpringLayout.WEST, spaces.get(String.format("" + i + j + k + l)), 30, SpringLayout.EAST, spaces.get(String.format("" + (i-1) + j + 2 + l)));
+								boardLayout.putConstraint(SpringLayout.WEST, spaces.get(String.format("" + i + j + k + l)), 20, SpringLayout.EAST, spaces.get(String.format("" + (i-1) + j + 2 + l)));
 							} else {
 								boardLayout.putConstraint(SpringLayout.WEST, spaces.get(String.format("" + i + j + k + l)), 10, SpringLayout.EAST, spaces.get(String.format("" + i + j + (k-1) + l)));
 							}
@@ -52,7 +52,7 @@ public class Board extends JPanel {
 							boardLayout.putConstraint(SpringLayout.NORTH, spaces.get(String.format("" + i + j + k + l)), 10, SpringLayout.NORTH, this);
 						} else {
 							if (l == 0) {
-								boardLayout.putConstraint(SpringLayout.NORTH, spaces.get(String.format("" + i + j + k + l)), 30, SpringLayout.SOUTH, spaces.get(String.format("" + i + (j-1) + k + 2)));
+								boardLayout.putConstraint(SpringLayout.NORTH, spaces.get(String.format("" + i + j + k + l)), 20, SpringLayout.SOUTH, spaces.get(String.format("" + i + (j-1) + k + 2)));
 							} else {
 								boardLayout.putConstraint(SpringLayout.NORTH, spaces.get(String.format("" + i + j + k + l)), 10, SpringLayout.SOUTH, spaces.get(String.format("" + i + j + k + (l-1))));
 							}
@@ -63,5 +63,28 @@ public class Board extends JPanel {
 			}
 		}
 	}
+	
+	public void lockInactive(int activeX, int activeY) {
+		int i,j,k,l;
+		for (i=0;i<3;i++) {
+			for (j=0;j<3;j++) {
+				for (k=0;k<3;k++) {
+					for (l=0;l<3;l++) {
+						spaces.get(String.format("" + i + j + k + l)).setEnabled(false);
+					}
+				}
+			}
+		}
+		
+		for (k=0;k<3;k++) {
+			for (l=0;l<3;l++) {
+				spaces.get(String.format("" + activeX + activeY + k + l)).setEnabled(true);
+			}
+		}
+		removeAll();
+		layoutSpaces();
+	}
+	
+	
 	
 }

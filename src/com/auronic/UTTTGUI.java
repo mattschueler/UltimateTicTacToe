@@ -6,6 +6,7 @@ public class UTTTGUI {
 
 	public static JFrame window;
 	public static Board board;
+	public static JSplitPane boards;
 	
 	public UTTTGUI() {
 		
@@ -16,8 +17,10 @@ public class UTTTGUI {
 		board = new Board();
 		window.add(board);
 		window.pack();
-		window.setSize(1100,853);
+		window.validate();
+		window.setSize(955,690);
 		window.setVisible(true);
+		window.setResizable(false);
 	}
 	
 	public static void main(String[] args) {

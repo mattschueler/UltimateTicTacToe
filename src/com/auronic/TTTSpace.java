@@ -9,7 +9,7 @@ import javax.swing.*;
 
 public class TTTSpace extends JButton {
 	private static final long serialVersionUID = 1L;
-	public String value;
+	public String value = null;
 	public Coords xy;
 	
 	public TTTSpace(int i, int j, int k, int l) {

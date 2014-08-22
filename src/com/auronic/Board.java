@@ -1,5 +1,7 @@
 package com.auronic;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.util.HashMap;
 
 import javax.swing.JPanel;
@@ -26,7 +28,7 @@ public class Board extends JPanel {
 			for (j=0;j<3;j++) {
 				for (k=0;k<3;k++) {
 					for (l=0;l<3;l++) {
-						spaces.put(String.format("" + i + j + k + l),new TTTSpace(i,j,k,l));
+						spaces.put(String.format("" + i + j + k + l), new TTTSpace(i,j,k,l));
 					}
 				}
 			}
@@ -65,26 +67,55 @@ public class Board extends JPanel {
 	}
 	
 	public void lockInactive(int activeX, int activeY) {
-		int i,j,k,l;
-		for (i=0;i<3;i++) {
-			for (j=0;j<3;j++) {
-				for (k=0;k<3;k++) {
-					for (l=0;l<3;l++) {
-						spaces.get(String.format("" + i + j + k + l)).setEnabled(false);
-					}
+		boolean full = true;
+		int x, y;
+		for (x=0;x<3;x++) {
+			for (y=0;y<3;y++) {
+				if (spaces.get(String.format("" + activeX + activeY + x + y)).getText() == null) {
+					full = false;
 				}
 			}
 		}
+		if (!full) {
+			int i,j,k,l;
+			for (i=0;i<3;i++) {
+				for (j=0;j<3;j++) {
+					for (k=0;k<3;k++) {
+						for (l=0;l<3;l++) {
+							spaces.get(String.format("" + i + j + k + l)).setEnabled(false);
+						}
+					}
+				}
+			}
 		
-		for (k=0;k<3;k++) {
-			for (l=0;l<3;l++) {
-				spaces.get(String.format("" + activeX + activeY + k + l)).setEnabled(true);
+			for (k=0;k<3;k++) {
+				for (l=0;l<3;l++) {
+					spaces.get(String.format("" + activeX + activeY + k + l)).setEnabled(true);
+				}
+			}
+		} else {
+			unlockAll();
+			if (player == "X") {
+				player = "O";
+			} else {
+				player = "X";
 			}
 		}
 		removeAll();
 		layoutSpaces();
 	}
 	
-	
+	public void unlockAll() {
+		int i,j,k,l;
+		for (i=0;i<3;i++) {
+			for (j=0;j<3;j++) {
+				for (k=0;k<3;k++) {
+					for (l=0;l<3;l++) {
+						spaces.get(String.format("" + i + j + k + l)).setEnabled(true);
+					}
+				}
+			}
+		}
+	}
 	
 }

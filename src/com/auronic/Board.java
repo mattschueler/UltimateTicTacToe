@@ -99,6 +99,7 @@ public class Board extends JPanel {
 				player = "X";
 			}
 		}
+		checkSmall(activeX, activeY);
 		removeAll();
 		layoutSpaces();
 	}
@@ -114,6 +115,10 @@ public class Board extends JPanel {
 				}
 			}
 		}
+	}
+	
+	public void checkSmall(int x, int y) {
+		//check for win inside last small box (one that wejust came from)
 	}
 	
 }

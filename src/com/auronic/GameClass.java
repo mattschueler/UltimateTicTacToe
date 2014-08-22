@@ -75,13 +75,13 @@ public class GameClass {
 			for (j=0;j<3;j++) {
 				switch (board [i][j]) {
 				case 0:
-					System.out.print("X");
+					System.out.print("*");
 					break;
 				case 1:
-					System.out.print("O");
+					System.out.print("X");
 					break;
 				case 2:
-					System.out.print("*");
+					System.out.print("O");
 					break;
 				default:
 					break;

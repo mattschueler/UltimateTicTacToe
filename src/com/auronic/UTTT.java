@@ -119,13 +119,13 @@ public class UTTT {
 					for (l=0;l<3;l++) {
 						switch (board [i][j][k][l]) {
 							case 0:
-								print("O");
-								break;
-							case 1:
 								print("*");
 								break;
-							case 2:
+							case 1:
 								print("X");
+								break;
+							case 2:
+								print("O");
 								break;
 							default:
 								break;

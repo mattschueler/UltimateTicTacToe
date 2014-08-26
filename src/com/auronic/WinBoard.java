@@ -1,6 +1,5 @@
 package com.auronic;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.HashMap;
@@ -12,7 +11,7 @@ import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 
 public class WinBoard extends JPanel {
-
+	private static final long serialVersionUID = 1L;
 	private SpringLayout sl;
 	public HashMap<String, JLabel> bigSpaces;
 	public JSeparator x1, x2, y1, y2;

@@ -2,6 +2,8 @@ package com.auronic;
 
 import java.util.HashMap;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 
@@ -10,9 +12,10 @@ public class Board extends JPanel {
 	public static String player;
 	public static HashMap<String, TTTSpace> spaces;
 	public SpringLayout boardLayout;
-		
+			
 	public Board() {
 		player = "X";
+		UTTTGUI.first = true;
 		spaces = new HashMap<String, TTTSpace>(81,1);
 		createSpaces();
 		boardLayout = new SpringLayout();
@@ -99,8 +102,11 @@ public class Board extends JPanel {
 				player = "X";
 			}
 		}
-		checkSmall(activeX, activeY);
 		removeAll();
+		if (!UTTTGUI.first) {
+			checkSmall(activeX, activeY);
+			UTTTGUI.first = false;
+		}
 		layoutSpaces();
 	}
 	
@@ -119,6 +125,46 @@ public class Board extends JPanel {
 	
 	public void checkSmall(int x, int y) {
 		//check for win inside last small box (one that wejust came from)
+		
+		//((JButton)this.getComponents()[_ + 3 * _ + 9 * x + 27 * y]).getText()
+		if (((JLabel)(UTTTGUI.wBoard.getComponents()[x + 3 * y])).getText() == "") {
+			if ((
+					((JButton)this.getComponents()[0 + 3 * 0 + 9 * x + 27 * y]).getText() == ((JButton)this.getComponents()[0 + 3 * 1 + 9 * x + 27 * y]).getText() && 
+					((JButton)this.getComponents()[0 + 3 * 0 + 9 * x + 27 * y]).getText() == ((JButton)this.getComponents()[0 + 3 * 2 + 9 * x + 27 * y]).getText() && 
+					((JButton)this.getComponents()[0 + 3 * 0 + 9 * x + 27 * y]).getText() != "0"
+					) || (
+					((JButton)this.getComponents()[1 + 3 * 0 + 9 * x + 27 * y]).getText() == ((JButton)this.getComponents()[1 + 3 * 1 + 9 * x + 27 * y]).getText() && 
+					((JButton)this.getComponents()[1 + 3 * 0 + 9 * x + 27 * y]).getText() == ((JButton)this.getComponents()[1 + 3 * 2 + 9 * x + 27 * y]).getText() && 
+					((JButton)this.getComponents()[1 + 3 * 0 + 9 * x + 27 * y]).getText() != "0"
+					) || (
+					((JButton)this.getComponents()[2 + 3 * 0 + 9 * x + 27 * y]).getText() == ((JButton)this.getComponents()[2 + 3 * 1 + 9 * x + 27 * y]).getText() && 
+					((JButton)this.getComponents()[2 + 3 * 0 + 9 * x + 27 * y]).getText() == ((JButton)this.getComponents()[2 + 3 * 2 + 9 * x + 27 * y]).getText() && 
+					((JButton)this.getComponents()[2 + 3 * 0 + 9 * x + 27 * y]).getText() != "0"
+					) || (
+					((JButton)this.getComponents()[0 + 3 * 0 + 9 * x + 27 * y]).getText() == ((JButton)this.getComponents()[1 + 3 * 0 + 9 * x + 27 * y]).getText() && 
+					((JButton)this.getComponents()[0 + 3 * 0 + 9 * x + 27 * y]).getText() == ((JButton)this.getComponents()[2 + 3 * 0 + 9 * x + 27 * y]).getText() && 
+					((JButton)this.getComponents()[0 + 3 * 0 + 9 * x + 27 * y]).getText() != "0"
+					) || (
+					((JButton)this.getComponents()[0 + 3 * 1 + 9 * x + 27 * y]).getText() == ((JButton)this.getComponents()[1 + 3 * 1 + 9 * x + 27 * y]).getText() && 
+					((JButton)this.getComponents()[0 + 3 * 1 + 9 * x + 27 * y]).getText() == ((JButton)this.getComponents()[2 + 3 * 1 + 9 * x + 27 * y]).getText() && 
+					((JButton)this.getComponents()[0 + 3 * 1 + 9 * x + 27 * y]).getText() != "0"
+					) || (
+					((JButton)this.getComponents()[0 + 3 * 2 + 9 * x + 27 * y]).getText() == ((JButton)this.getComponents()[1 + 3 * 2 + 9 * x + 27 * y]).getText() && 
+					((JButton)this.getComponents()[0 + 3 * 2 + 9 * x + 27 * y]).getText() == ((JButton)this.getComponents()[2 + 3 * 2 + 9 * x + 27 * y]).getText() && 
+					((JButton)this.getComponents()[0 + 3 * 2 + 9 * x + 27 * y]).getText() != "0"
+					) || (
+					((JButton)this.getComponents()[0 + 3 * 0 + 9 * x + 27 * y]).getText() == ((JButton)this.getComponents()[1 + 3 * 1 + 9 * x + 27 * y]).getText() && 
+					((JButton)this.getComponents()[0 + 3 * 0 + 9 * x + 27 * y]).getText() == ((JButton)this.getComponents()[2 + 3 * 2 + 9 * x + 27 * y]).getText() && 
+					((JButton)this.getComponents()[0 + 3 * 0 + 9 * x + 27 * y]).getText() != "0"
+					) || (
+					((JButton)this.getComponents()[0 + 3 * 2 + 9 * x + 27 * y]).getText() == ((JButton)this.getComponents()[1 + 3 * 1 + 9 * x + 27 * y]).getText() && 
+					((JButton)this.getComponents()[0 + 3 * 2 + 9 * x + 27 * y]).getText() == ((JButton)this.getComponents()[2 + 3 * 0 + 9 * x + 27 * y]).getText() && 
+					((JButton)this.getComponents()[0 + 3 * 2 + 9 * x + 27 * y]).getText() != "0"
+					)){
+				((JLabel)(UTTTGUI.wBoard.getComponents()[x + 3 * y])).setText(player);
+			}			
+		}
+
 	}
 	
 }

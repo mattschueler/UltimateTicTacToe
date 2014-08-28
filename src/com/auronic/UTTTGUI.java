@@ -11,6 +11,8 @@ public class UTTTGUI {
 	public static WinBoard wBoard;
 	public static JSplitPane boards;
 	
+	public static boolean first = true;
+	
 	public UTTTGUI() {
 		
 		
